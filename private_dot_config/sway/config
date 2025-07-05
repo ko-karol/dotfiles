@@ -53,6 +53,12 @@ input type:keyboard {
 # You can also configure each device individually.
 # Read `man 5 sway-input` for more information about this section.
 
+### Window appearance
+#
+# Remove window titlebars and borders
+default_border none
+default_floating_border none
+
 ### Key bindings
 #
 # Basics:

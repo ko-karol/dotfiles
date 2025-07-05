@@ -228,6 +228,16 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end
 
+-- Disable lsp validation ()
+vim.api.nvim_create_autocmd('BufReadPost', {
+  callback = function()
+    local first_line = vim.fn.getline(1)
+    if first_line:match 'disable%-lsp%-validation' then
+      vim.diagnostic.enable(false)
+    end
+  end,
+})
+
 ---@type vim.Option
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
@@ -681,6 +691,8 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
         --
+
+        -- CSS Language Server with GTK-specific support
 
         lua_ls = {
           -- cmd = { ... },
