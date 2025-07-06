@@ -78,9 +78,6 @@ window#waybar {
 	padding: 0 8px;
 }
 
-#apy {
-	background: transparent;
-}
 
 @keyframes blink {
 	to {
@@ -90,7 +87,7 @@ window#waybar {
 
 /* GTK Menu Styling */
 menu {
-	background: @primary;
+	background: @background;
 	color: @primary;
 	border: 1px solid @secondary;
 	border-radius: 4px;
