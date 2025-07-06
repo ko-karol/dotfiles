@@ -108,3 +108,6 @@ alias tkss='tmux kill-session -t'
 # Development session shortcuts
 alias dev='tmux new-session -s dev -c ~/projects \; split-window -h -p 40 \; send-keys "nvim" C-m \;'
 
+# Chezmoi backup
+alias czbackup='chezmoi re-add && chezmoi cd && git add . && git commit -m "Update dotfiles" && git
+   push'
