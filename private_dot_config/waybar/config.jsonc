@@ -20,7 +20,7 @@
 	"custom/power"
     ],
     // Modules configuration
-     "sway/workspaces": {
+	     "sway/workspaces": {
          "disable-scroll": true,
          "all-outputs": true,
          "format": "{name}: {icon}",
