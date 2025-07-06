@@ -1,26 +1,10 @@
 /* disable-lsp-validation */
 
-/* Batman Color Scheme - Black, Yellow, Dark Gray, White */
-@define-color bg_primary rgba(20, 20, 20, 0.920);
-@define-color bg_module rgba(30, 30, 30, 0.8);
-@define-color bg_module_hover rgba(30, 30, 30, 0.9);
-@define-color bg_workspace_hover rgba(30, 30, 30, 0.6);
-@define-color bg_focused #ffdd00;
-@define-color bg_urgent #ffdd00;
-@define-color bg_warning #ffdd00;
-@define-color bg_critical #ffdd00;
-@define-color bg_charging #ffdd00;
-@define-color bg_activated #ffdd00;
-@define-color bg_locked rgba(255, 221, 0, 0.6);
-@define-color bg_disconnected #ffdd00;
-@define-color bg_muted #1e1e1e;
+/* Color Palette */
+@define-color background rgba(26, 27, 38, 1.0);
+@define-color a_background rgba(26, 27, 38, 0.5);
+@define-color primary rgba(255, 221, 0, 1.0);
 
-/* Text colors */
-@define-color text_primary #ffdd00;
-@define-color text_secondary #ffffff;
-@define-color text_muted #666666;
-@define-color text_contrast #000000;
-@define-color text_dark #000000;
 
 * {
 	font-family: JetBrains Mono, monospace;
@@ -32,133 +16,111 @@
 }
 
 window#waybar {
-	background: @bg_primary;
-	color: @text_primary;
+	background: @background;
+	color: @primary;
 	transition: all 0.3s ease;
+}
+
+.module {
+	padding: 0 10px;
+}
+
+.module:hover {
+	background: @a_background;
+}
+
+.module.focused {
+	background: @accent;
 }
 
 #workspaces button {
 	padding: 0 10px;
 	background: transparent;
-	color: @text_secondary;
+	color: @primary;
 	transition: all 0.2s ease;
 }
 
 #workspaces button:hover {
-	background: @bg_workspace_hover;
-	color: @text_primary;
+	background: @a_background;
+	color: @primary;
 }
 
-#workspaces button.focused {
-	background: @bg_focused;
-	color: @text_contrast;
-}
-
+#workspaces button.focused,
 #workspaces button.urgent {
-	background: @bg_urgent;
-	color: @text_contrast;
+	background: @accent;
+	color: @contrast;
 }
 
-#clock {
-	color: @text_primary;
-	font-weight: bold;
-}
-
-#window {
-	color: @text_secondary;
-	background-color: @bg_module;
-	font-style: italic;
-}
-
-#custom-notification,
-#idle_inhibitor,
-#keyboard-state,
-#backlight,
-#pulseaudio,
-#network,
-#battery,
-#clock,
-#tray,
-#mpd,
-#cpu,
-#memory,
-#temperature,
-#power-profiles-daemon,
-#mode,
-#scratchpad,
-#custom-media,
-#custom-power {
-	padding: 0 12px;
-	background: @bg_module;
-	color: @text_primary;
-	transition: all 0.2s ease;
-}
-
-#custom-notification:hover,
-#idle_inhibitor:hover,
-#keyboard-state:hover,
-#backlight:hover,
-#pulseaudio:hover,
-#network:hover,
-#battery:hover,
-#clock:hover,
-#mpd:hover,
-#cpu:hover,
-#memory:hover,
-#temperature:hover,
-#power-profiles-daemon:hover,
-#mode:hover,
-#scratchpad:hover,
-#custom-media:hover,
-#custom-power:hover {
-	background: @bg_module_hover;
-}
-
-#battery.warning {
-	background: @bg_warning;
-	color: @text_dark;
+#battery.warning,
+#battery.charging,
+#network.disconnected,
+#idle_inhibitor.activated {
+	background: @accent;
+	color: @contrast;
 }
 
 #battery.critical {
-	background: @bg_critical;
-	color: @text_contrast;
+	background: @accent;
+	color: @contrast;
 	animation: blink 1s ease-in-out infinite alternate;
 }
 
-#battery.charging {
-	background: @bg_charging;
-	color: @text_dark;
-}
-
-#network.disconnected {
-	background: @bg_disconnected;
-	color: @text_contrast;
-}
-
 #pulseaudio.muted {
-	background: @bg_muted;
-	color: @text_muted;
-}
-
-@keyframes blink {
-	to {
-		background: rgba(255, 221, 0, 0.5);
-	}
-}
-
-#idle_inhibitor.activated {
-	background: @bg_activated;
-	color: @text_dark;
+	background: @muted;
+	color: @muted;
 }
 
 #keyboard-state>label.locked {
-	background: @bg_locked;
+	background: @accent_alpha;
 }
 
 #custom-notification {
 	padding: 0 8px;
 }
 
-#tray {
+#apy {
 	background: transparent;
+}
+
+@keyframes blink {
+	to {
+		background: @accent_alpha;
+	}
+}
+
+/* GTK Menu Styling */
+menu {
+	background: @primary;
+	color: @primary;
+	border: 1px solid @secondary;
+	border-radius: 4px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	padding: 4px 0;
+	font-family: JetBrains Mono, monospace;
+	font-size: 14px;
+}
+
+menuitem {
+	padding: 8px 16px;
+	margin: 2px;
+	border-radius: 2px;
+	transition: all 0.2s ease;
+	color: @secondary;
+}
+
+menuitem:hover,
+menuitem:selected {
+	background: @secondary;
+	color: @primary;
+}
+
+menuitem:disabled {
+	color: @muted;
+	background: transparent;
+}
+
+separator {
+	background: @secondary;
+	min-height: 1px;
+	margin: 4px 8px;
 }
