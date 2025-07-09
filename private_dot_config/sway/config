@@ -27,6 +27,10 @@ output * bg /home/karol/Pictures/2085518.jpg fill
 #
 # Example configuration:
 #
+# Security and environment setup
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
 exec swayidle -w \
 	timeout 300 'swaylock -f -c 000000' \
 	timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
@@ -45,6 +49,7 @@ input type:touchpad {
 	tap enabled
 	natural_scroll enabled
 	middle_emulation enabled
+	accel_profile adaptive
 }
 
 input type:keyboard {
@@ -56,9 +61,12 @@ input type:keyboard {
 
 ### Window appearance
 #
-# Remove window titlebars and borders
- default_border none
+# Set window borders for better distinction
+default_border pixel 2
 #default_floating_border none
+
+# Focus follows mouse
+focus_follows_mouse yes
 
 ### Key bindings
 #
@@ -72,6 +80,9 @@ input type:keyboard {
 
     # Start your launcher
     bindsym $mod+d exec $menu
+    
+    # Start browser
+    bindsym $mod+Shift+b exec flatpak run com.microsoft.Edge
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -202,11 +213,16 @@ bindsym $mod+r mode "resize"
 #
 # Utilities:
 #
-    # Special keys to adjust volume via PulseAudio
-    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+    # Special keys to adjust volume via wireplumber
+    bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+    bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+    bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+    # Media control keys
+    bindsym --locked XF86AudioPlay exec playerctl play-pause
+    bindsym --locked XF86AudioPause exec playerctl play-pause
+    bindsym --locked XF86AudioNext exec playerctl next
+    bindsym --locked XF86AudioPrev exec playerctl previous
     # Special keys to adjust brightness via brightnessctl
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
@@ -223,10 +239,6 @@ bindsym $mod+r mode "resize"
  bar {
      swaybar_command waybar
      position top
- 
-     # When the status_command prints a new line to stdout, swaybar updates.
-     # The default just shows the current date and time.
-     status_command while date +'%Y-%m-%d %X'; do sleep 1; done
  
      colors {
          statusline #ffffff
