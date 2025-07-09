@@ -1,43 +1,36 @@
 {
 	"position": "bottom",
-	"height": 24,
+	"height": 32,
 	"modules-left": [
 		"sway/workspaces"
 	],
 	"modules-center": [
-		"custom/emoticon"
+		"mpris"
 	],
 	"modules-right": [
-		"custom/colorpicker",
-		"pulseaudio",
-		"network",
-		"battery",
-		"bat2",
-		"backlight",
-		"custom/separator1",
-		"idle_inhibitor",
-		"power-profiles-daemon",
-		"custom/separator2",
-		"mpris",
-		"clock",
-		"keyboard-state",
+		"group/media",
+		"group/system",
+		"group/status",
 		"custom/power"
 	],
-	// Modules configuration
 	"sway/workspaces": {
-		"disable-scroll": false,
-		"smooth-scrolling-threshold": 1,
-		"all-outputs": true,
-		"format": "{name}: {icon}",
+		"format": "{icon}",
 		"format-icons": {
-			"1": "",
-			"2": "",
-			"3": "",
-			"4": "",
-			"5": "",
+			"1": "",
+			"2": "",
+			"3": "",
+			"4": "",
+			"5": "",
 			"urgent": "",
 			"focused": "",
 			"default": ""
+		},
+		"persistent-workspaces": {
+			"1": [],
+			"2": [],
+			"3": [],
+			"4": [],
+			"5": []
 		}
 	},
 	"keyboard-state": {
@@ -75,10 +68,7 @@
 		"format": "{}% "
 	},
 	"temperature": {
-		// "thermal-zone": 2,
-		// "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
 		"critical-threshold": 80,
-		// "format-critical": "{temperatureC}°C {icon}",
 		"format": "{temperatureC}°C {icon}",
 		"format-icons": [
 			"",
@@ -87,7 +77,6 @@
 		]
 	},
 	"backlight": {
-		// "device": "acpi_video1",
 		"format": "{percent}% {icon}",
 		"format-icons": [
 			"",
@@ -102,9 +91,8 @@
 		]
 	},
 	"battery": {
-		"interval": 60,
+		"interval": 5,
 		"states": {
-			// "good": 95,
 			"warning": 30,
 			"critical": 15
 		},
@@ -125,12 +113,6 @@
 			""
 		]
 	},
-	"battery#bat2": {
-		"bat": "BAT2",
-		"interval": 60,
-		"tooltip": true,
-		"tooltip-format": "Battery 2: {capacity}% - {time}"
-	},
 	"power-profiles-daemon": {
 		"format": "{icon}",
 		"tooltip-format": "Power profile: {profile}\nDriver: {driver}",
@@ -144,7 +126,6 @@
 		}
 	},
 	"network": {
-		// "interface": "wlp2*", // (Optional) To force the use of this interface
 		"interval": 30,
 		"tooltip": true,
 		"tooltip-format-wifi": "{essid} ({signalStrength}%) - {frequency} MHz",
@@ -154,7 +135,8 @@
 		"format-ethernet": "{ipaddr}/{cidr} ",
 		"format-linked": "{ifname} (No IP) ",
 		"format-disconnected": "Disconnected ⚠",
-		"format-alt": "{ifname}: {ipaddr}/{cidr}"
+		"on-click": "kitty -e nmtui",
+		"on-click-right": "nm-applet --indicator"
 	},
 	"pulseaudio": {
 		"scroll-step": 5,
@@ -204,10 +186,6 @@
 		"tooltip": false,
 		"on-click": "$HOME/.config/waybar/colorpicker.sh"
 	},
-	"custom/emoticon": {
-		//"format": "乁( ͠°‿ °)ㄏ"
-		"format": "𜲦𜲧"
-	},
 	"custom/separator1": {
 		"format": "|",
 		"tooltip": false
@@ -228,7 +206,9 @@
 			"paused": "⏸",
 			"playing": "▶"
 		},
-		"ignored-players": ["firefox"],
+		"ignored-players": [
+			"firefox"
+		],
 		"max-length": 40,
 		"tooltip": true,
 		"tooltip-format": "{player}: {artist} - {title}",
@@ -236,5 +216,67 @@
 		"on-click-right": "playerctl next",
 		"on-scroll-up": "playerctl previous",
 		"on-scroll-down": "playerctl next"
+	},
+	"tray": {
+		"icon-size": 16,
+		"spacing": 10,
+		"tooltip": true
+	},
+	"custom/notification": {
+		"format": "{}",
+		"tooltip": false,
+		"exec": "swaync-client -t -sw",
+		"on-click": "swaync-client -t -sw",
+		"escape": true
+	},
+	"sway/language": {
+		"format": "{}",
+		"tooltip": true,
+		"tooltip-format": "Language: {long}"
+	},
+	"sway/mode": {
+		"format": "<span style=\"italic\">{}</span>",
+		"tooltip": false
+	},
+	"disk": {
+		"interval": 30,
+		"format": "{percentage_used}% ",
+		"path": "/",
+		"tooltip": true,
+		"tooltip-format": "Used: {used} / {total} ({percentage_used}%)"
+	},
+	"custom/weather": {
+		"format": "{}",
+		"tooltip": true,
+		"interval": 300,
+		"exec": "curl -s 'wttr.in?format=1' 2>/dev/null || echo '🌤️'",
+		"return-type": "text"
+	},
+	"group/media": {
+		"orientation": "horizontal",
+		"modules": [
+			"custom/colorpicker",
+			"mpris"
+		]
+	},
+	"group/system": {
+		"orientation": "horizontal",
+		"modules": [
+			"pulseaudio",
+			"network",
+			"battery",
+			"backlight",
+			"idle_inhibitor",
+			"power-profiles-daemon"
+		]
+	},
+	"group/status": {
+		"orientation": "horizontal",
+		"modules": [
+			"clock",
+			"tray",
+			"custom/notification",
+			"keyboard-state"
+		]
 	}
 }

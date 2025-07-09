@@ -14,7 +14,8 @@ set $menu wofi --show drun
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /home/karol/Pictures/2085518.jpg fill
 #
 # Example configuration:
 #
@@ -56,8 +57,8 @@ input type:keyboard {
 ### Window appearance
 #
 # Remove window titlebars and borders
-default_border none
-default_floating_border none
+ default_border none
+#default_floating_border none
 
 ### Key bindings
 #
@@ -195,7 +196,9 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
 bindsym $mod+r mode "resize"
+
 #
 # Utilities:
 #
@@ -208,8 +211,11 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
-    bindsym Print exec grim
+    bindsym Print exec grimshot copy screen
+    bindsym Shift+Print exec grimshot copy area 
+    bindsym Alt+Print exec grimshot copy window
 
+    exec wl-paste --watch cliphist store
 #
 # Status Bar:
 #

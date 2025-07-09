@@ -1,100 +1,243 @@
 /* disable-lsp-validation */
 
 /* Color Palette */
-@define-color background rgba(26, 27, 38, 1.0);
-@define-color a_background rgba(26, 27, 38, 0.5);
-@define-color primary rgba(255, 221, 0, 1.0);
-
+@define-color background #1A1B26;
+@define-color a_background #292E42;
+@define-color primary #FFDD00;
+@define-color secondary #92BE62;
+@define-color accent #FF6B6B;
+@define-color contrast #1A1B26;
+@define-color muted #565F89;
+@define-color accent_alpha rgba(255, 107, 107, 0.3);
+@define-color warning #FFB86C;
+@define-color critical #FF5555;
 
 * {
-	font-family: JetBrains Mono, monospace;
-	font-size: 16px;
-	border: none;
-	margin: 0;
-	padding: 0;
-	border-radius: 0;
+	all: unset;
+	font-size: 1rem;
+
 }
 
 window#waybar {
-	background: @background;
+	background: linear-gradient(180deg, rgba(26, 27, 38, 0.9) 0%, rgba(26, 27, 38, 0.3) 100%);
 	color: @primary;
 	transition: all 0.3s ease;
+	border-bottom: 2px solid rgba(146, 190, 98, 0.6);
+	font-family: "JetBrains Mono Nerd Font Propo", "JetBrains Mono Nerd Font", monospace;
+	box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.module {
-	padding: 0 10px;
+.modules-left .module,
+.modules-center .module,
+.modules-right .module {
+	padding: 4px 12px;
+	margin: 0 2px;
+	border-radius: 12px 12px 0 0;
+	background: linear-gradient(145deg, rgba(41, 46, 66, 0.8) 0%, rgba(41, 46, 66, 0.6) 100%);
+	border: 1px solid rgba(146, 190, 98, 0.2);
+	border-bottom: none;
+	box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .module:hover {
-	background: @a_background;
+	background: linear-gradient(145deg, rgba(41, 46, 66, 0.9) 0%, rgba(41, 46, 66, 0.7) 100%);
+	color: @secondary;
+	border: 1px solid rgba(146, 190, 98, 0.5);
+	box-shadow: 0 4px 24px rgba(146, 190, 98, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .module.focused {
-	background: @accent;
+	color: @secondary;
+	background: linear-gradient(145deg, rgba(41, 46, 66, 0.95) 0%, rgba(41, 46, 66, 0.8) 100%);
+	border: 1px solid rgba(146, 190, 98, 0.6);
+	box-shadow: 0 4px 24px rgba(146, 190, 98, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Center all module content */
+.module label {
+	margin: 0;
+	padding: 0;
+}
+
+#workspaces {
+	background: linear-gradient(145deg, rgba(41, 46, 66, 0.8) 0%, rgba(41, 46, 66, 0.6) 100%);
+	border: 1px solid rgba(146, 190, 98, 0.2);
+	border-bottom: none;
+	border-left: none;
+	border-radius: 0 12px 0 0;
+	padding: 2px;
+	margin: 0;
+	box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 #workspaces button {
-	padding: 0 10px;
+	padding: 4px 12px;
+	margin: 2px;
 	background: transparent;
 	color: @primary;
-	transition: all 0.2s ease;
+	border-radius: 4px;
+	min-width: 24px;
+	font-size: 1rem;
 }
 
 #workspaces button:hover {
-	background: @a_background;
-	color: @primary;
+	background: linear-gradient(145deg, rgba(41, 46, 66, 0.9) 0%, rgba(41, 46, 66, 0.7) 100%);
+	color: @secondary;
+	border: 1px solid rgba(146, 190, 98, 0.3);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-#workspaces button.focused,
+#workspaces button.focused {
+	background: linear-gradient(145deg, rgba(146, 190, 98, 0.95) 0%, rgba(146, 190, 98, 0.8) 100%);
+	color: @background;
+	border: 1px solid rgba(146, 190, 98, 0.6);
+	box-shadow: 0 0 16px rgba(146, 190, 98, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+	font-size: 1rem;
+}
+
 #workspaces button.urgent {
 	background: @accent;
 	color: @contrast;
 }
 
-#battery.warning,
-#battery.charging,
-#network.disconnected,
-#idle_inhibitor.activated {
+#workspaces button:last-child {
+	border-radius: 4px 10px 4px 4px;
+}
+
+#battery.warning {
+	background: @warning;
+	color: @background;
+}
+
+#battery.critical {
+	background: @critical;
+	color: @background;
+}
+
+#battery.charging {
+	background: @secondary;
+	color: @background;
+	animation: none;
+}
+
+#battery.charging.critical {
+	background: @secondary;
+	color: @background;
+	animation: none;
+}
+
+#network.disconnected {
 	background: @accent;
 	color: @contrast;
 }
 
-#battery.critical {
-	background: @accent;
-	color: @contrast;
-	animation: blink 1s ease-in-out infinite alternate;
+#idle_inhibitor.activated {
+	background: @secondary;
+	color: @background;
+	box-shadow: 0 0 6px rgba(146, 190, 98, 0.6);
 }
 
 #pulseaudio.muted {
 	background: @muted;
-	color: @muted;
+	color: @background;
+	opacity: 0.6;
 }
 
 #keyboard-state>label.locked {
 	background: @accent_alpha;
+	color: @primary;
+}
+
+#cpu {
+	color: @primary;
+}
+
+#cpu.warning {
+	background: @warning;
+	color: @background;
+}
+
+#cpu.critical {
+	background: @critical;
+	color: @background;
+}
+
+#memory {
+	color: @primary;
+}
+
+#memory.warning {
+	background: @warning;
+	color: @background;
+}
+
+#memory.critical {
+	background: @critical;
+	color: @background;
+}
+
+#temperature {
+	color: @primary;
+}
+
+#temperature.critical {
+	background: @critical;
+	color: @background;
+}
+
+#tray {
+	background: linear-gradient(145deg, rgba(41, 46, 66, 0.8) 0%, rgba(41, 46, 66, 0.6) 100%);
+	border: 1px solid rgba(146, 190, 98, 0.2);
+	border-bottom: none;
+	border-radius: 12px 12px 0 0;
+	padding: 0 8px;
+	box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+#tray menu {
+	background: linear-gradient(145deg, rgba(26, 27, 38, 0.95) 0%, rgba(26, 27, 38, 0.85) 100%);
+	color: @primary;
+	border: 1px solid rgba(146, 190, 98, 0.4);
+	box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 #custom-notification {
-	padding: 0 8px;
+	color: @primary;
 }
 
-
-@keyframes blink {
-	to {
-		background: @accent_alpha;
-	}
+#custom-notification.notification {
+	background: @accent;
+	color: @contrast;
 }
+
+#custom-weather {
+	color: @primary;
+}
+
+#disk {
+	color: @primary;
+}
+
+#disk.warning {
+	background: @warning;
+	color: @background;
+}
+
+#disk.critical {
+	background: @critical;
+	color: @background;
+}
+
 
 /* GTK Menu Styling */
 menu {
-	background: @background;
+	background: linear-gradient(145deg, rgba(26, 27, 38, 0.95) 0%, rgba(26, 27, 38, 0.85) 100%);
 	color: @primary;
-	border: 1px solid @secondary;
-	border-radius: 4px;
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	border: 1px solid rgba(146, 190, 98, 0.4);
+	border-radius: 12px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 	padding: 4px 0;
-	font-family: JetBrains Mono, monospace;
-	font-size: 14px;
+	font-size: 1rem;
 }
 
 menuitem {
@@ -120,4 +263,10 @@ separator {
 	background: @secondary;
 	min-height: 1px;
 	margin: 4px 8px;
+}
+
+#custom-power {
+	border-radius: 12px 0 0 0;
+	border-right: none;
+	margin: 0;
 }
