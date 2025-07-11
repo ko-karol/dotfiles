@@ -1,0 +1,92 @@
+# Mako notification configuration
+# Matching Waybar color scheme
+
+# Basic styling
+background-color=#1A1B26E6
+text-color=#FFDD00
+border-color=#92BE62
+border-size=2
+border-radius=12
+padding=12
+margin=8
+
+# Font
+font=JetBrains Mono Nerd Font Propo 11
+markup=1
+
+# Positioning
+anchor=top-right
+output=*
+
+# Size constraints
+width=350
+height=150
+max-visible=5
+
+# Timeouts
+default-timeout=5000
+ignore-timeout=0
+
+# Actions
+actions=1
+history=1
+layer=overlay
+
+# Grouping
+group-by=app-name
+max-history=100
+
+# Behavior
+sort=-time
+
+# Icons
+icons=1
+max-icon-size=48
+icon-path=/usr/share/icons/Papirus-Dark:/usr/share/icons/hicolor:/usr/share/pixmaps
+
+# Progress bar
+progress-color=#92BE62
+
+# Urgency levels
+[urgency=low]
+background-color=#1A1B26CC
+text-color=#565F89
+border-color=#292E42
+
+[urgency=normal]
+background-color=#1A1B26E6
+text-color=#FFDD00
+border-color=#92BE62
+
+[urgency=critical]
+background-color=#FF6B6BE6
+text-color=#1A1B26
+border-color=#FF5555
+default-timeout=0
+
+# App-specific styling
+[app-name=".*"]
+background-color=#1A1B26E6
+
+[summary~=".*[Ee]rror.*"]
+background-color=#FF6B6BE6
+text-color=#1A1B26
+border-color=#FF5555
+
+[app-name="Volume" summary~=".*"]
+background-color=#292E42E6
+border-color=#FFB86C
+text-color=#FFB86C
+default-timeout=2000
+
+[app-name="Battery" summary~=".*"]
+background-color=#292E42E6
+border-color=#FF6B6B
+text-color=#FF6B6B
+default-timeout=8000
+
+[app-name="Network" summary~=".*"]
+background-color=#292E42E6
+border-color=#92BE62
+text-color=#92BE62
+default-timeout=3000
