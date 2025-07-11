@@ -8,9 +8,13 @@
 		"mpris"
 	],
 	"modules-right": [
-		"group/media",
-		"group/system",
-		"group/status",
+		"idle-inhibitor",
+		"battery",
+		"power-profiles-daemon",
+		"clock",
+		"custom/notification",
+		"tray",
+		"keyboard-state",
 		"custom/power"
 	],
 	"sway/workspaces": {
@@ -138,7 +142,7 @@
 		"on-click": "kitty -e nmtui",
 		"on-click-right": "nm-applet --indicator"
 	},
-	"pulseaudio": {
+	"wireplumber": {
 		"scroll-step": 5,
 		"format": "{icon}",
 		"format-bluetooth": "{icon} {format_source}",
@@ -155,7 +159,7 @@
 			]
 		},
 		"on-click": "pavucontrol",
-		"on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+		"on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
 		"tooltip": true,
 		"tooltip-format": "Volume: {volume}%"
 	},
@@ -218,16 +222,15 @@
 		"on-scroll-down": "playerctl next"
 	},
 	"tray": {
-		"icon-size": 16,
+		"icon-size": 21,
 		"spacing": 10,
-		"tooltip": true
+		"tooltip": true,
+		"show-passive-items": true
 	},
 	"custom/notification": {
-		"format": "{}",
+		"format": "󰂜",
 		"tooltip": false,
-		"exec": "swaync-client -t -sw",
-		"on-click": "swaync-client -t -sw",
-		"escape": true
+		"on-click": "makoctl dismiss --all"
 	},
 	"sway/language": {
 		"format": "{}",
@@ -262,7 +265,7 @@
 	"group/system": {
 		"orientation": "horizontal",
 		"modules": [
-			"pulseaudio",
+			"wireplumber",
 			"network",
 			"battery",
 			"backlight",

@@ -1,56 +1,55 @@
 /* disable-lsp-validation */
-
 /* Color Palette */
-@define-color background #1A1B26;
-@define-color a_background #292E42;
-@define-color primary #FFDD00;
-@define-color secondary #92BE62;
-@define-color accent #FF6B6B;
-@define-color contrast #1A1B26;
-@define-color muted #565F89;
-@define-color accent_alpha rgba(255, 107, 107, 0.3);
-@define-color warning #FFB86C;
-@define-color critical #FF5555;
+@define-color dark-blue #1A1B26;
+@define-color darker-blue #292E42;
+@define-color yellow #FFDD00;
+@define-color green #92BE62;
+@define-color red #FF6B6B;
+@define-color gray #565F89;
+@define-color orange #FFB86C;
+@define-color bright-red #FF5555;
 
 * {
 	all: unset;
-	font-size: 1rem;
-
+	font-size: 1.2rem;
 }
 
 window#waybar {
-	background: linear-gradient(180deg, rgba(26, 27, 38, 0.9) 0%, rgba(26, 27, 38, 0.3) 100%);
-	color: @primary;
+	background: linear-gradient(180deg, alpha(@dark-blue, 0.9) 0%, alpha(@dark-blue, 0.3) 100%);
+	border-bottom: 2px solid alpha(@green, 0.6);
 	transition: all 0.3s ease;
-	border-bottom: 2px solid rgba(146, 190, 98, 0.6);
 	font-family: "JetBrains Mono Nerd Font Propo", "JetBrains Mono Nerd Font", monospace;
-	box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	box-shadow: 0 4px 32px alpha(black, 0.3);
+	box-shadow: inset 0 1px 0 alpha(white, 0.1);
 }
 
-.modules-left .module,
-.modules-center .module,
-.modules-right .module {
-	padding: 4px 12px;
-	margin: 0 2px;
+.module {
+	background: linear-gradient(145deg, alpha(@darker-blue, 0.9) 0%, alpha(@darker-blue, 0.6) 100%);
+	box-shadow: 0 2px 16px alpha(black, 0.2);
+	box-shadow: inset 0 1px 0 alpha(white, 0.1);
+	border: 1px solid alpha(@green, 0.2);
 	border-radius: 12px 12px 0 0;
-	background: linear-gradient(145deg, rgba(41, 46, 66, 0.8) 0%, rgba(41, 46, 66, 0.6) 100%);
-	border: 1px solid rgba(146, 190, 98, 0.2);
-	border-bottom: none;
-	box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	padding-left: 12px;
+	padding-right: 12px;
+	margin-left: 4px;
+	margin-right: 4px;
+	color: @yellow;
 }
 
 .module:hover {
-	background: linear-gradient(145deg, rgba(41, 46, 66, 0.9) 0%, rgba(41, 46, 66, 0.7) 100%);
-	color: @secondary;
-	border: 1px solid rgba(146, 190, 98, 0.5);
-	box-shadow: 0 4px 24px rgba(146, 190, 98, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+	background: linear-gradient(145deg, alpha(@darker-blue, 0.9) 0%, alpha(@darker-blue, 0.7) 100%);
+	color: @green;
+	border: 1px solid alpha(@green, 0.5);
+	box-shadow: 0 4px 24px alpha(@green, 0.3);
+	box-shadow: inset 0 1px 0 alpha(white, 0.15);
 }
 
 .module.focused {
-	color: @secondary;
-	background: linear-gradient(145deg, rgba(41, 46, 66, 0.95) 0%, rgba(41, 46, 66, 0.8) 100%);
-	border: 1px solid rgba(146, 190, 98, 0.6);
-	box-shadow: 0 4px 24px rgba(146, 190, 98, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+	color: @green;
+	background: linear-gradient(145deg, alpha(@darker-blue, 0.95) 0%, alpha(@darker-blue, 0.8) 100%);
+	border: 1px solid alpha(@green, 0.6);
+	box-shadow: 0 4px 24px alpha(@green, 0.4);
+	box-shadow: inset 0 1px 0 alpha(white, 0.15);
 }
 
 /* Center all module content */
@@ -60,44 +59,46 @@ window#waybar {
 }
 
 #workspaces {
-	background: linear-gradient(145deg, rgba(41, 46, 66, 0.8) 0%, rgba(41, 46, 66, 0.6) 100%);
-	border: 1px solid rgba(146, 190, 98, 0.2);
+	background: linear-gradient(145deg, alpha(@darker-blue, 0.8) 0%, alpha(@darker-blue, 0.6) 100%);
+	border: 1px solid alpha(@green, 0.2);
 	border-bottom: none;
 	border-left: none;
 	border-radius: 0 12px 0 0;
 	padding: 2px;
 	margin: 0;
-	box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	box-shadow: 0 2px 16px alpha(black, 0.2);
+	box-shadow: inset 0 1px 0 alpha(white, 0.1);
 }
 
 #workspaces button {
 	padding: 4px 12px;
 	margin: 2px;
 	background: transparent;
-	color: @primary;
+	color: @yellow;
 	border-radius: 4px;
 	min-width: 24px;
 	font-size: 1rem;
 }
 
 #workspaces button:hover {
-	background: linear-gradient(145deg, rgba(41, 46, 66, 0.9) 0%, rgba(41, 46, 66, 0.7) 100%);
-	color: @secondary;
-	border: 1px solid rgba(146, 190, 98, 0.3);
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	background: linear-gradient(145deg, alpha(@darker-blue, 0.9) 0%, alpha(@darker-blue, 0.7) 100%);
+	color: @green;
+	border: 1px solid alpha(@green, 0.3);
+	box-shadow: inset 0 1px 0 alpha(white, 0.1);
 }
 
 #workspaces button.focused {
-	background: linear-gradient(145deg, rgba(146, 190, 98, 0.95) 0%, rgba(146, 190, 98, 0.8) 100%);
-	color: @background;
-	border: 1px solid rgba(146, 190, 98, 0.6);
-	box-shadow: 0 0 16px rgba(146, 190, 98, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+	background: linear-gradient(145deg, alpha(@green, 0.95) 0%, alpha(@green, 0.8) 100%);
+	color: @dark-blue;
+	border: 1px solid alpha(@green, 0.6);
+	box-shadow: 0 0 16px alpha(@green, 0.6);
+	box-shadow: inset 0 1px 0 alpha(white, 0.2);
 	font-size: 1rem;
 }
 
 #workspaces button.urgent {
-	background: @accent;
-	color: @contrast;
+	background: @red;
+	color: @dark-blue;
 }
 
 #workspaces button:last-child {
@@ -105,137 +106,148 @@ window#waybar {
 }
 
 #battery.warning {
-	background: @warning;
-	color: @background;
+	background: @orange;
+	color: @dark-blue;
 }
 
 #battery.critical {
-	background: @critical;
-	color: @background;
+	background: @bright-red;
+	color: @dark-blue;
 }
 
 #battery.charging {
-	background: @secondary;
-	color: @background;
+	background: @green;
+	color: @dark-blue;
 	animation: none;
 }
 
 #battery.charging.critical {
-	background: @secondary;
-	color: @background;
+	background: @green;
+	color: @dark-blue;
 	animation: none;
 }
 
 #network.disconnected {
-	background: @accent;
-	color: @contrast;
+	background: @red;
+	color: @dark-blue;
 }
 
 #idle_inhibitor.activated {
-	background: @secondary;
-	color: @background;
-	box-shadow: 0 0 6px rgba(146, 190, 98, 0.6);
+	background: @green;
+	color: @dark-blue;
+	box-shadow: 0 0 6px alpha(@green, 0.6);
 }
 
 #pulseaudio.muted {
-	background: @muted;
-	color: @background;
+	background: @gray;
+	color: @dark-blue;
 	opacity: 0.6;
 }
 
 #keyboard-state>label.locked {
-	background: @accent_alpha;
-	color: @primary;
+	background: alpha(@red, 0.3);
+	color: @yellow;
 }
 
 #cpu {
-	color: @primary;
+	color: @yellow;
 }
 
 #cpu.warning {
-	background: @warning;
-	color: @background;
+	background: @orange;
+	color: @dark-blue;
 }
 
 #cpu.critical {
-	background: @critical;
-	color: @background;
+	background: @bright-red;
+	color: @dark-blue;
 }
 
 #memory {
-	color: @primary;
+	color: @yellow;
 }
 
 #memory.warning {
-	background: @warning;
-	color: @background;
+	background: @orange;
+	color: @dark-blue;
 }
 
 #memory.critical {
-	background: @critical;
-	color: @background;
+	background: @bright-red;
+	color: @dark-blue;
 }
 
 #temperature {
-	color: @primary;
+	color: @yellow;
 }
 
 #temperature.critical {
-	background: @critical;
-	color: @background;
+	background: @bright-red;
+	color: @dark-blue;
 }
 
 #tray {
-	background: linear-gradient(145deg, rgba(41, 46, 66, 0.8) 0%, rgba(41, 46, 66, 0.6) 100%);
-	border: 1px solid rgba(146, 190, 98, 0.2);
+	background: linear-gradient(145deg, alpha(@darker-blue, 0.8) 0%, alpha(@darker-blue, 0.6) 100%);
+	border: 1px solid alpha(@green, 0.2);
 	border-bottom: none;
 	border-radius: 12px 12px 0 0;
 	padding: 0 8px;
-	box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	box-shadow: 0 2px 16px alpha(black, 0.2);
+	box-shadow: inset 0 1px 0 alpha(white, 0.1);
 }
 
 #tray menu {
-	background: linear-gradient(145deg, rgba(26, 27, 38, 0.95) 0%, rgba(26, 27, 38, 0.85) 100%);
-	color: @primary;
-	border: 1px solid rgba(146, 190, 98, 0.4);
-	box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	background: linear-gradient(145deg, alpha(@dark-blue, 0.95) 0%, alpha(@dark-blue, 0.85) 100%);
+	color: @yellow;
+	border: 1px solid alpha(@green, 0.4);
+	box-shadow: 0 4px 24px alpha(black, 0.3);
+	box-shadow: inset 0 1px 0 alpha(white, 0.1);
 }
 
 #custom-notification {
-	color: @primary;
+	color: @yellow;
 }
 
 #custom-notification.notification {
-	background: @accent;
-	color: @contrast;
+	background: @red;
+	color: @dark-blue;
+}
+
+#custom-notification.dnd {
+	color: @gray;
+}
+
+#custom-notification.dnd-notification {
+	background: @orange;
+	color: @dark-blue;
 }
 
 #custom-weather {
-	color: @primary;
+	color: @yellow;
 }
 
 #disk {
-	color: @primary;
+	color: @yellow;
 }
 
 #disk.warning {
-	background: @warning;
-	color: @background;
+	background: @orange;
+	color: @dark-blue;
 }
 
 #disk.critical {
-	background: @critical;
-	color: @background;
+	background: @bright-red;
+	color: @dark-blue;
 }
-
 
 /* GTK Menu Styling */
 menu {
-	background: linear-gradient(145deg, rgba(26, 27, 38, 0.95) 0%, rgba(26, 27, 38, 0.85) 100%);
-	color: @primary;
-	border: 1px solid rgba(146, 190, 98, 0.4);
+	background: linear-gradient(145deg, alpha(@dark-blue, 0.95) 0%, alpha(@dark-blue, 0.85) 100%);
+	color: @yellow;
+	border: 1px solid alpha(@green, 0.4);
 	border-radius: 12px;
-	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	box-shadow: 0 8px 32px alpha(black, 0.4);
+	box-shadow: inset 0 1px 0 alpha(white, 0.1);
 	padding: 4px 0;
 	font-size: 1rem;
 }
@@ -245,22 +257,22 @@ menuitem {
 	margin: 2px;
 	border-radius: 2px;
 	transition: all 0.2s ease;
-	color: @secondary;
+	color: @green;
 }
 
 menuitem:hover,
 menuitem:selected {
-	background: @secondary;
-	color: @primary;
+	background: @green;
+	color: @yellow;
 }
 
 menuitem:disabled {
-	color: @muted;
+	color: @gray;
 	background: transparent;
 }
 
 separator {
-	background: @secondary;
+	background: @green;
 	min-height: 1px;
 	margin: 4px 8px;
 }
