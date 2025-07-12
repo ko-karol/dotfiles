@@ -1,3 +1,7 @@
+-- ToggleTerm.nvim - Terminal integration plugin for Neovim
+-- Provides floating, horizontal, vertical, and tabbed terminal windows
+-- Easily toggle terminals with customizable keybindings and manage multiple terminal instances
+
 return {
   'akinsho/toggleterm.nvim',
   version = '*',

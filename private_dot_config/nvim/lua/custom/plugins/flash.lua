@@ -1,3 +1,7 @@
+-- Flash.nvim - Navigate your code with search labels
+-- Provides ultra-fast motion plugin with incremental search and jump-to-label functionality
+-- Enhanced replacement for plugins like EasyMotion and Lightspeed with treesitter integration
+
 return {
   'folke/flash.nvim',
   event = 'VeryLazy',

@@ -1,3 +1,7 @@
+-- Snacks.nvim - Collection of small QoL plugins for Neovim
+-- Provides various UI enhancements including dashboard, notifications, file explorer, and more
+-- Modular design allows enabling only the components you need
+
 return {
   "folke/snacks.nvim",
   priority = 1000,

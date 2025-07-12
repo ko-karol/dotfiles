@@ -8,8 +8,11 @@
 		"mpris"
 	],
 	"modules-right": [
-		"idle-inhibitor",
+		"wireplumber",
+		"network",
+		"idle_inhibitor",
 		"battery",
+		"backlight",
 		"power-profiles-daemon",
 		"clock",
 		"custom/notification",
@@ -95,15 +98,15 @@
 		]
 	},
 	"battery": {
-		"interval": 5,
+		"interval": 60,
 		"states": {
 			"warning": 30,
 			"critical": 15
 		},
-		"format": "{capacity}% {icon}",
-		"format-full": "{capacity}% {icon}",
-		"format-charging": "{capacity}% ",
-		"format-plugged": "{capacity}% ",
+		"format": "{icon}",
+		"format-full": "{icon}",
+		"format-charging": "{icon}",
+		"format-plugged": "{icon}",
 		"format-alt": "{time} {icon}",
 		"tooltip": true,
 		"tooltip-format": "Battery: {capacity}% - {time}",

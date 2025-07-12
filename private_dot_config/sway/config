@@ -65,6 +65,8 @@ input type:keyboard {
 default_border pixel 2
 #default_floating_border none
 
+ 
+ 
 # Focus follows mouse
 focus_follows_mouse yes
 
@@ -238,13 +240,6 @@ bindsym $mod+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
  bar {
      swaybar_command waybar
-     position top
- 
-     colors {
-         statusline #ffffff
-         background #323232
-         inactive_workspace #32323200 #32323200 #5c5c5c
-     }
  }
 
 include /etc/sway/config.d/*

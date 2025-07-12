@@ -1,3 +1,7 @@
+-- Trouble.nvim - Pretty list for diagnostics, references, quickfix, and more
+-- Provides a unified interface for displaying LSP diagnostics, references, and symbols
+-- Enhanced replacement for quickfix and location lists with better formatting and navigation
+
 return {
   'folke/trouble.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },

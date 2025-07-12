@@ -1,3 +1,7 @@
+-- Diffview.nvim - Git diff viewer and merge tool
+-- Provides side-by-side diff views, file history, and merge conflict resolution
+-- Integrates with git to show changes between commits, branches, and working tree
+
 return {
   'sindrets/diffview.nvim',
   dependencies = { 'nvim-lua/plenary.nvim' },

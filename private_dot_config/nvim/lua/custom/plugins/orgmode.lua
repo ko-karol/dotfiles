@@ -1,3 +1,7 @@
+-- Orgmode.nvim - Emacs Org-mode clone for Neovim
+-- Provides task management, note-taking, and agenda functionality with org-mode syntax
+-- Features todo lists, scheduling, deadlines, tables, and structured document editing
+
 return {
   'nvim-orgmode/orgmode',
   event = 'VeryLazy',
